@@ -173,8 +173,7 @@ function buildBodyVisualMeaning(result, bodyVisual) {
     return "";
   }
 
-  return `Dans la lecture visuelle, les épaules paraissent ${shoulders} et la taille semble ${waist}. Ces éléments viennent confirmer ou nuancer la lecture issue des mesures.`;
-}
+  return `Dans la lecture visuelle, les épaules paraissent ${shoulders} et la taille semble ${waist}. Ces éléments viennent confirmer ou nuancer la lecture issue des tours principaux et affiner le résultat final.`;}
 
 function buildFaceVisualMeaning(result, faceVisual) {
   if (!result) return "";
@@ -1932,44 +1931,51 @@ export default function Page() {
                   items={bodyResult.practicalAdvice?.avoid}
                 />
 
-                <details style={{ marginTop: 20 }}>
-                  <summary style={{ cursor: "pointer", fontWeight: 600 }}>
-                    Voir les repères techniques
-                  </summary>
+<details style={{ marginTop: 20 }}>
+  <summary style={{ cursor: "pointer", fontWeight: 600 }}>
+    Voir les repères techniques
+  </summary>
 
-                  <div style={{ marginTop: 12 }}>
-                    <div style={{ lineHeight: 1.7 }}>
-                      <strong>Lecture principale :</strong>{" "}
-                      {bodyResult.primaryLabel}
-                    </div>
+  <div style={{ marginTop: 12 }}>
+    <div style={{ lineHeight: 1.7 }}>
+      <strong>Lecture principale :</strong>{" "}
+      {bodyResult.primaryLabel}
+    </div>
 
-                    <div style={{ lineHeight: 1.7 }}>
-                      <strong>Lecture secondaire :</strong>{" "}
-                      {bodyResult.secondaryLabel}
-                    </div>
+    <div style={{ lineHeight: 1.7 }}>
+      <strong>Lecture secondaire :</strong>{" "}
+      {bodyResult.secondaryLabel}
+    </div>
 
-                    <div style={{ lineHeight: 1.7 }}>
-                      <strong>Observation métier :</strong>{" "}
-                      {bodyResult.explanation}
-                    </div>
+    <div style={{ lineHeight: 1.7 }}>
+      <strong>Observation métier :</strong>{" "}
+      {bodyResult.explanation}
+    </div>
 
-                    <ul style={{ marginTop: 8, lineHeight: 1.7 }}>
-                      <li>
-                        Épaules / Hanches :{" "}
-                        {bodyResult.ratios?.shouldersToHips?.toFixed(2)}
-                      </li>
-                      <li>
-                        Taille / Hanches :{" "}
-                        {bodyResult.ratios?.waistToHips?.toFixed(2)}
-                      </li>
-                      <li>
-                        Taille / Poitrine :{" "}
-                        {bodyResult.ratios?.waistToBust?.toFixed(2)}
-                      </li>
-                    </ul>
-                  </div>
-                </details>
-              </>
+    <ul style={{ marginTop: 8, lineHeight: 1.7 }}>
+      <li>
+        Buste / Hanches :{" "}
+        {bodyResult.ratios?.bustToHips?.toFixed(2)}
+      </li>
+      <li>
+        Taille / Hanches :{" "}
+        {bodyResult.ratios?.waistToHips?.toFixed(2)}
+      </li>
+      <li>
+        Taille / Buste :{" "}
+        {bodyResult.ratios?.waistToBust?.toFixed(2)}
+      </li>
+      <li>
+        Taille / plus petite mesure haut-bas :{" "}
+        {bodyResult.ratios?.waistToMinUpperLower?.toFixed(2)}
+      </li>
+      <li>
+        Lecture méthode : {bodyResult.method}
+      </li>
+    </ul>
+  </div>
+</details>
+</>
             ) : (
               <div style={{ opacity: 0.8 }}>
                 Renseigne les mesures silhouette dans l’onglet Diagnostic.
